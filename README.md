@@ -11,6 +11,7 @@ Imperial College London, UK
 <a href='https://arc2face.github.io/'><img src='https://img.shields.io/badge/Project-Page-blue'></a>
 <a href='https://arxiv.org/abs/2403.11641'><img src='https://img.shields.io/badge/Paper-arXiv-red'></a>
 <a href='https://huggingface.co/FoivosPar/Arc2Face'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-orange'></a>
+<a href='https://huggingface.co/spaces/FoivosPar/Arc2Face'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Demo-green'></a>
 
 </div>
 
@@ -23,6 +24,9 @@ This is the official implementation of **[Arc2Face](https://arc2face.github.io/)
 <img src='assets/teaser.gif'>
 
 # News/Updates
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/arc2face-a-foundation-model-of-human-faces/face-generation-on-agedb)](https://paperswithcode.com/sota/face-generation-on-agedb?p=arc2face-a-foundation-model-of-human-faces)
+
+- [2024/03/28] 🔥 We release our Gradio [demo](https://huggingface.co/spaces/FoivosPar/Arc2Face) on HuggingFace Spaces (thanks to the HF team for their free GPU support)!
 - [2024/03/14] 🔥 We release Arc2Face.
 
 # Installation
@@ -35,7 +39,7 @@ pip install -r requirements.txt
 ```
 
 # Download Models
-The models can be downloaded manually from [HuggingFace](https://huggingface.co/FoivosPar/Arc2Face) or using python:
+1) The models can be downloaded manually from [HuggingFace](https://huggingface.co/FoivosPar/Arc2Face) or using python:
 ```python
 from huggingface_hub import hf_hub_download
 
@@ -44,12 +48,16 @@ hf_hub_download(repo_id="FoivosPar/Arc2Face", filename="arc2face/diffusion_pytor
 hf_hub_download(repo_id="FoivosPar/Arc2Face", filename="encoder/config.json", local_dir="./models")
 hf_hub_download(repo_id="FoivosPar/Arc2Face", filename="encoder/pytorch_model.bin", local_dir="./models")
 ```
-For face detection and ID-embedding extraction, download the [antelopev2](https://github.com/deepinsight/insightface/tree/master/python-package) package and place the checkpoints under `models/antelopev2`. We use an ArcFace recognition model trained on WebFace42M. Download `arcface.onnx` from [HuggingFace](https://huggingface.co/FoivosPar/Arc2Face) and put it in `models/antelopev2` or using python:
+
+2) For face detection and ID-embedding extraction, manually download the [antelopev2](https://github.com/deepinsight/insightface/tree/master/python-package#model-zoo) package ([direct link](https://drive.google.com/file/d/18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8/view)) and place the checkpoints under `models/antelopev2`. 
+
+3) We use an ArcFace recognition model trained on WebFace42M. Download `arcface.onnx` from [HuggingFace](https://huggingface.co/FoivosPar/Arc2Face) and put it in `models/antelopev2` or using python:
 ```python
 hf_hub_download(repo_id="FoivosPar/Arc2Face", filename="arcface.onnx", local_dir="./models/antelopev2")
 ```
-and **delete** `glintr100.onnx` (the default backbone from insightface). The `models` folder structure should finally be:
+4) Then **delete** `glintr100.onnx` (the default backbone from insightface).
 
+The `models` folder structure should finally be:
 ```
   . ── models ──┌── antelopev2
                 ├── arc2face
