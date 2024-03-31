@@ -1,0 +1,6 @@
+*.py[cod]
+*$py.class
+models/*
+models/
+samples/*
+

@@ -2,8 +2,10 @@ import torch
 from transformers import CLIPTextModel
 from typing import Any, Callable, Dict, Optional, Tuple, Union, List
 from transformers.modeling_outputs import BaseModelOutputWithPooling
-from transformers.models.clip.modeling_clip import _make_causal_mask, _expand_mask
-
+from transformers.modeling_attn_mask_utils import AttentionMaskConverter
+# from transformers.models.clip.modeling_clip import _make_causal_mask, _expand_mask
+_make_causal_mask = AttentionMaskConverter._make_causal_mask
+_expand_mask = AttentionMaskConverter._expand_mask
 
 class CLIPTextModelWrapper(CLIPTextModel):
     # Adapted from https://github.com/huggingface/transformers/blob/v4.34.1/src/transformers/models/clip/modeling_clip.py#L812
